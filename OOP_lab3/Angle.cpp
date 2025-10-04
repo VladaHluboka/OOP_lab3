@@ -14,11 +14,16 @@ void Angle::Read()
 
 void Angle::Display()const
 {
-	cout << "Кут: " << first << " degrees " << second << " minutes" << endl;
+	//cout << "Кут: " << first << " degrees " << second << " minutes" << endl;
 	cout << "Радіан кута: " << Radians() << endl;
 	cout << "Градус кута: " << Angle_() << endl;
-	cout << "Діапазон 0-360: " << Diapason() << endl;
+	cout << "Діапазон 0-360: " << Diapason() << endl; 
 	cout << "Sin: " << Sin() << endl;
+}
+
+void Angle::SimpleDisplay() const
+{
+	cout << Diapason() << endl;
 }
 
 float Angle::Radians()const
@@ -31,7 +36,6 @@ float Angle::Angle_()const
 	return first + second / 60; // формула переведення хвилин у градуси
 }
 
-
 float Angle::Diapason()const
 {
 	if (Angle_() > 360)
@@ -41,14 +45,16 @@ float Angle::Diapason()const
 	return Angle_();
 }
 
-float Angle::Increment(float inc)const
+Angle Angle::operator+(float inc) const
 {
-	return Diapason() + inc; // збільшення кута
+	float Increment = Diapason() + inc; // збільшення кута
+	return Angle((int)Increment, (Increment - (int)Increment) * 60);
 }
 
-float Angle::Decrement(float dec)const
+Angle Angle::operator-(float dec) const
 {
-	return Diapason() - dec; // зменшення кута
+	float Decrement = Diapason() - dec; // зменшення кута
+	return Angle((int)Decrement, (Decrement - (int)Decrement) * 60);
 }
 
 float Angle::Sin()const
@@ -74,3 +80,10 @@ string Angle::toString() const // рядкове представлення
 	out << Angle_();
 	return out.str();
 }
+
+Angle Angle::operator+(const Angle& other) const // операція перевантаження додавання
+{
+	float sum = Diapason() + other.Diapason();
+	return Angle((int)sum, (sum - (int)sum) * 60);
+}
+

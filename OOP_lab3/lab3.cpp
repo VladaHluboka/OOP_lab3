@@ -34,16 +34,30 @@ int main()
 	// виведення кутів
 	cout << "--- Перший кут ---" << endl;
 	a1.Display();
-	cout << "Перший кут пясля збільшення на " << incValue << ": " << a1.Increment(incValue) << endl;
-	cout << "Перший кут пясля зменшення на " << decValue << ": " << a1.Decrement(decValue) << endl;
+	cout << "Перший кут після збільшення на " << incValue << ": ";
+	(a1 + incValue).SimpleDisplay();
+
+	cout << "Перший кут після зменшення на " << decValue << ": ";
+	(a1 - decValue).SimpleDisplay();
 
 	cout << "--- Другий кут ---" << endl;
 	a2.Display();
-	cout << "Другий кут пясля збільшення на " << incValue << ": " << a2.Increment(incValue) << endl;
-	cout << "Другий кут пясля зменшення на " << decValue << ": " << a2.Decrement(decValue) << endl;
 
-	cout << "Порівняння: ";
+	cout << "Другий кут після збільшення на " << incValue << ": ";
+	(a2 + incValue).SimpleDisplay();
+
+	cout << "Другий кут після зменшення на " << decValue << ": ";
+	(a2 - decValue).SimpleDisplay();
+
+	//порівняння кутів
+	cout << "\tПорівняння: ";
 	cout << a1.toString() << " " << a1.Comparison(a2) << " " << a2.toString() << endl;
+
+	Angle sum = a1 + a2;
+	cout << "Додавання кутів: ";
+	sum.SimpleDisplay();
+
+
 	system("pause");
 	system("ping gmail.com");
 }
